@@ -1,0 +1,31 @@
+# Скомпилированные бинарники
+swap
+revert_string
+a.out
+*.out
+*.exe
+
+# Объектные файлы и библиотеки
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.dll
+*.dylib
+
+# Папки сборки
+build/
+cmake-build-*/
+out/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Системное
+.DS_Store
+Thumbs.db
