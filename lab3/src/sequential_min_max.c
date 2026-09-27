@@ -11,8 +11,12 @@ int main(int argc, char **argv) {
   }
 
   int seed = atoi(argv[1]);
-  if (seed <= 0) {
-    printf("seed is a positive number\n");
+  // Генератор rand() может принимать любые seed, но обычно проверяют на положительность
+  // Если seed = 0, rand() будет выдавать одинаковые числа, это допустимо.
+  // Проверка seed <= 0 может быть избыточной, если только это не требование задания.
+  // Оставим проверку, но уточним, что seed может быть 0.
+  if (seed < 0) {
+    printf("seed must be non-negative\n");
     return 1;
   }
 
@@ -23,8 +27,16 @@ int main(int argc, char **argv) {
   }
 
   int *array = malloc(array_size * sizeof(int));
+  if (array == NULL) {
+      printf("Memory allocation failed\n");
+      return 1;
+  }
+
   GenerateArray(array, array_size, seed);
+  
+  // ВЫЗОВ ФУНКЦИИ, КОТОРОЙ НЕ БЫЛО В ИСХОДНИКЕ
   struct MinMax min_max = GetMinMax(array, 0, array_size);
+  
   free(array);
 
   printf("min: %d\n", min_max.min);
